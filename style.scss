@@ -1,0 +1,165 @@
+@mixin svg-icon {
+    display: block;
+    width: 10%;
+    height: 10%;
+    color: rgb(12, 12, 12);    
+}
+
+@mixin modal-window {
+    display: none;
+    width: 20%;
+    height: 45%;
+    font-size: 28px;
+    background-color: antiquewhite;
+    border: 3px solid black;
+    border-radius: 8px;
+    padding: 10px;
+}
+@mixin button {
+    width: 110px;
+    height: 30px;
+    border: 2px solid rgb(0, 0, 0);
+    font-size: 24px;
+    color: rgb(0, 0, 0) ;
+    border-radius: 7px;
+    text-align: center;
+    cursor: pointer;
+    margin: 10px;
+}
+
+@mixin node_decoration{
+    display: block;
+    background-color: rgb(255, 255, 255);
+    margin: 3px;
+    border-radius: 15px;
+    border: 2px solid black;
+    #redIcon{
+        display: none;
+    }
+    &:hover {
+    background-color: rgb(222, 223, 215);
+    #redIcon{
+        display: block;
+        width: 50px;
+        height: 40px;
+       }
+    }
+}
+
+@mixin modal-window-active {
+    position: absolute;
+    top: 20;
+    left: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    p{
+        margin: 0px;
+    }
+    .button-modal-block{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.task_list_container {
+    display: block;
+    width: 30%;
+    background-color: rgb(255, 252, 248);
+    h3{
+        color: rgb(83, 56, 21);
+        font-size: 24;
+        text-align: center;
+    }
+    p{
+        color: rgb(231, 151, 54);
+        font-size: 18;
+        text-align: center;
+    }
+    margin: 5px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+body{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    background-color: rgb(255, 252, 248);
+}
+
+.basket{
+     @include svg-icon;
+     display: block;
+     &:hover {fill: coral}
+     
+}
+
+.plus{
+    display: block;
+    @include svg-icon;
+    &:hover {fill: aquamarine;}
+}
+
+.appendTask, .cancelWindow{
+    @include button;
+}
+
+.appendTask:hover{border-color: aquamarine; color: aquamarine;}
+.cancelWindow:hover{border-color: coral; color: coral;}
+
+.newWindow{
+    @include modal-window;
+    textarea, .task-datatime{
+        margin: 10px;
+        border: 2px solid black;
+        resize: none;
+        
+    }
+}
+.newWindow.active{
+    @include modal-window-active
+   
+}
+
+
+.tasksList >li, #deferred > li {
+    @include node_decoration;
+  .node_desc
+  {
+    display: block;
+    font-size: 16;
+    color: cadetblue;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+  .node_text{
+    font-size: 20;
+    color: cadetblue;
+  }
+}
+
+body.modal-open>*:not(.newWindow.active) {
+    filter: blur(6px);
+    
+  }
+
+  .redIcon{
+    @include svg-icon;
+    position: absolute;
+    display: none;
+    left: 85%;
+    top:80%;
+}
